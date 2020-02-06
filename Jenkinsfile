@@ -36,7 +36,7 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          DOCKER_IMAGE = docker.build("${params.dockerhubRepo}:${BUILD_NUMBER}")
+          DOCKER_IMAGE = docker.build("${params.dockerhubRepo}:${params.imageTag}")
         }
       }
     }
