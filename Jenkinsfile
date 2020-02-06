@@ -19,7 +19,6 @@ pipeline {
   environment {
     SSH_DEPLOY = "docker run -d --restart unless-stopped ${params.publishPorts} ${params.volumesMount} ${params.containersNetwork} --name ${JOB_BASE_NAME} ${params.dockerRegistry}/${params.dockerhubRepo}:${BUILD_NUMBER}"
   }
-
   stages {
     stage("Import parameters - dry run") {
       when {
