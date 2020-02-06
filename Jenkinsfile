@@ -42,11 +42,13 @@ pipeline {
     }
     stage('Push image') {
       steps {
+        catchError {
           script {
             docker.withRegistry("https://${params.dockerRegistry}", "${params.dockerRegCred}") {
               DOCKER_IMAGE.push("${params.imageTag}")
             }
           }
+        }
       }
     }
     stage('Run Container on PROD Server') {
