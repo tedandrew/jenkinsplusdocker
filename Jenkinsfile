@@ -21,16 +21,16 @@ pipeline {
   }
 
   stages {
-    stage("Parameterizing") {
+    stage("Import parameters - dry run") {
       when {
         expression {
           return params.dryRun == true;
         }
       }
       steps {
-        echo 'Dry run completed. Job parameters were imported. Please set them to the correct values at the Project Configuration UI.'
         script {
           currentBuild.result = 'ABORTED'
+          error('Dry run completed. Job parameters were imported. Please set them to the correct values at the Project Configuration UI.')
         }
       }
     }
